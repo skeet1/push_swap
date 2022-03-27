@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/03/27 11:38:30 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/03/27 13:33:05 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void    ft_putstr(char *s);
 int     ft_atoi(char *s);
 void    print(t_stack_a *head);
 int ft_check_dup(t_stack_a *arg);
+int ft_check_sort(t_stack_a *arg);
 
 #endif

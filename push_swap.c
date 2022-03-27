@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/03/27 11:41:59 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/03/27 12:28:49 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int main(int argc, char **argv)
     }
     if (ft_check_dup(arg) == 0)
         return (ft_putstr("Error\n"), 0);
+    if (ft_check_sort(arg))
+        return (ft_putstr("is sorted \n"), 0);
     ft_putstr("args good\n");
-    print(arg);
+    // print(arg);
 }
