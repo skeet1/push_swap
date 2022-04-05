@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 14:57:20 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/05 17:09:53 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int main(int argc, char **argv)
             argv[1] = ft_strjoin(argv[1], argv[i++]);
         args = ft_split(argv[1], ' ');
         i = 0;
-        printf("%s\n", argv[1]);
         while (args[i])
         {
             if (ft_check_arg(args[i]) == 0)
@@ -90,13 +89,14 @@ int main(int argc, char **argv)
         return (ft_putstr("Error\n"), 0);
     if (ft_check_sort(a))
         return (ft_putstr("is sorted \n"), 0);
-    ft_putstr("args good\n");
+    // ft_putstr("args good\n");
     b = NULL;
     // ra(&a, 0);
     // printf("Stack a\n");
     // print(a);
     // printf("Stack b\n");
     // print(b);
-    rra(&a, 0);
-    print(a);
+    // rra(&a, 0);
+    // print(a);
+    sort(&a, &b);
 }

@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 14:55:22 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/05 17:22:18 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ void    ra(t_stack_a **s, int p);
 void    pb(t_stack_a **a, t_stack_a **b);
 void    pa(t_stack_a **a, t_stack_a **b);
 void    rra(t_stack_a **a, int p);
+void    sort(t_stack_a **a, t_stack_a **b);
+void    sort_three(t_stack_a **a);
 
 #endif
