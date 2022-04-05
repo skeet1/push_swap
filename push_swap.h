@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 11:28:23 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:55:22 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,15 @@ int ft_atoi(char *s);
 void print(t_stack_a *head);
 int ft_check_dup(t_stack_a *arg);
 int ft_check_sort(t_stack_a *arg);
-void sa(t_stack_a **s);
+void sa(t_stack_a **s, int p);
 char **ft_split(char const *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
+void    addBack(t_stack_a **s, int n);
+void    addFront(t_stack_a **s, int n);
+t_stack_a *newNode(int n);
+void    ra(t_stack_a **s, int p);
+void    pb(t_stack_a **a, t_stack_a **b);
+void    pa(t_stack_a **a, t_stack_a **b);
+void    rra(t_stack_a **a, int p);
 
 #endif

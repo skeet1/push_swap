@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 12:24:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:57:20 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ t_stack_a *newNode(int n)
 void addBack(t_stack_a **s, int n)
 {
     t_stack_a *tmp;
-    t_stack_a *new = newNode(n);
+    t_stack_a *new;
     
+    new = newNode(n);
     tmp = *s;
     if (tmp)
     {
@@ -52,10 +53,20 @@ void addBack(t_stack_a **s, int n)
     }
 }
 
+void    addFront(t_stack_a **s, int n)
+{
+    t_stack_a *new;
+
+    new = newNode(n);
+    new->p = *s;
+    *s = new;
+}
+
 int main(int argc, char **argv)
 {
     int i;
-    t_stack_a *arg = NULL;
+    t_stack_a *a;
+    t_stack_a *b;
     static char **args;
 
     i = 2;
@@ -72,15 +83,20 @@ int main(int argc, char **argv)
         {
             if (ft_check_arg(args[i]) == 0)
                 return (ft_putstr("Error\n"), 0);
-            addBack(&arg, ft_atoi(args[i++]));
+            addBack(&a, ft_atoi(args[i++]));
         }
     }
-    if (ft_check_dup(arg) == 0)
+    if (ft_check_dup(a) == 0)
         return (ft_putstr("Error\n"), 0);
-    if (ft_check_sort(arg))
+    if (ft_check_sort(a))
         return (ft_putstr("is sorted \n"), 0);
     ft_putstr("args good\n");
-    print(arg);
-    // printf("after\n");
-    // print(arg);
+    b = NULL;
+    // ra(&a, 0);
+    // printf("Stack a\n");
+    // print(a);
+    // printf("Stack b\n");
+    // print(b);
+    rra(&a, 0);
+    print(a);
 }
