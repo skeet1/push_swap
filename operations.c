@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 10:33:14 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 15:03:28 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/06 08:28:46 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void    pa(t_stack_a **a, t_stack_a **b)
         addFront(a, tb->n);
         *b = tb->p;
     }
+    ft_putstr("pa\n");
 }
 
 void    pb(t_stack_a **a, t_stack_a **b)
@@ -163,6 +164,7 @@ void    pb(t_stack_a **a, t_stack_a **b)
         addFront(b, ta->n);
         *a = ta->p;
     }
+    ft_putstr("pb\n");
 }
 
 void    rra(t_stack_a **a, int p)

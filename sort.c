@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 17:22:20 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/06 09:35:13 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,81 @@ void    sort_three(t_stack_a **a)
         sa(a, 1);
 }
 
+void    sort_four(t_stack_a **a, t_stack_a **b)
+{
+    int min;
+    int ind_min;
+    t_stack_a *tmp;
+    int i;
+
+    ind_min = 0;
+    tmp = *a;
+    min = 2147483647;
+    i = 0;
+    while (tmp)
+    {
+        tmp->ind = ++i;
+        if (tmp->n < min)
+        {
+            ind_min = tmp->ind;
+            min = tmp->n;
+        }
+        tmp = tmp->p;
+    }
+    while (--ind_min)
+        ra(a, 1);
+    pb(a, b);
+    sort_three(a);
+    pa(a, b);
+}
+
+void sort_five(t_stack_a **a, t_stack_a **b)
+{
+    int m;
+    int ind_m;
+    t_stack_a *tmp;
+    int i;
+
+    ind_m = 0;
+    tmp = *a;
+    m = -2147483648;
+    i = 0;
+    while (tmp)
+    {
+        tmp->ind = ++i;
+        if (tmp->n > m)
+        {
+            ind_m = tmp->ind;
+            m = tmp->n;
+        }
+        tmp = tmp->p;
+    }
+    while (--ind_m)
+        ra(a, 1);
+    pb(a, b);
+    ind_m = 0;
+    tmp = *a;
+    m = 2147483647;
+    i = 0;
+    while (tmp)
+    {
+        tmp->ind = ++i;
+        if (tmp->n < m)
+        {
+            ind_m = tmp->ind;
+            m = tmp->n;
+        }
+        tmp = tmp->p;
+    }
+    while (--ind_m)
+        ra(a, 1);
+    pb(a, b);
+    sort_three(a);
+    pa(a, b);
+    pa(a, b);
+    ra(a, 1);
+}
+
 void    sort(t_stack_a **a, t_stack_a **b)
 {
     t_stack_a *tmp;
@@ -53,7 +128,12 @@ void    sort(t_stack_a **a, t_stack_a **b)
         size++;
         tmp = tmp->p;
     }
-    if (size == 3)
-    sort_three(a);
-    (void)b;
+    if (size == 2)
+        ra(a, 1);
+    else if (size == 3)
+        sort_three(a);
+    else if (size == 4)
+        sort_four(a, b);
+    else if (size == 5)
+        sort_five(a, b);
 }
