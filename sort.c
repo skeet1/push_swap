@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/06 09:35:13 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/10 12:10:23 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,18 @@ void sort_five(t_stack_a **a, t_stack_a **b)
     ra(a, 1);
 }
 
+t_stack_a *find_lis(t_stack_a **a)
+{
+    
+}
+
+void    ft_sort_b(t_stack_a **a, t_stack_a **b)
+{
+    t_stack_a *lis;
+    
+    lis = find_lis(a);
+}
+
 void    sort(t_stack_a **a, t_stack_a **b)
 {
     t_stack_a *tmp;
@@ -136,4 +148,6 @@ void    sort(t_stack_a **a, t_stack_a **b)
         sort_four(a, b);
     else if (size == 5)
         sort_five(a, b);
+    else
+        ft_sort_b(a, b);
 }

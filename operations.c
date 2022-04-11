@@ -6,13 +6,13 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 10:33:14 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/06 08:28:46 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/06 12:38:38 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    sa(t_stack_a **s, int p)
+void    sa(t_stack_a **a, int p)
 {
     int size;
     t_stack_a *tmp;
@@ -20,7 +20,7 @@ void    sa(t_stack_a **s, int p)
     int sn;
 
     size = 0;
-    tmp = *s;
+    tmp = *a;
     while (tmp)
     {
         size++;
@@ -28,7 +28,7 @@ void    sa(t_stack_a **s, int p)
     }
     if (size > 1)
     {
-        tmp = *s;
+        tmp = *a;
         fn = tmp->n;
         sn = tmp->p->n;
         tmp->n = sn;
@@ -38,7 +38,7 @@ void    sa(t_stack_a **s, int p)
         ft_putstr("sa\n");
 }
 
-void    sb(t_stack_a **s, int p)
+void    sb(t_stack_a **b, int p)
 {
     int size;
     t_stack_a *tmp;
@@ -46,7 +46,7 @@ void    sb(t_stack_a **s, int p)
     int sn;
 
     size = 0;
-    tmp = *s;
+    tmp = *b;
     while (tmp)
     {
         size++;
@@ -54,7 +54,7 @@ void    sb(t_stack_a **s, int p)
     }
     if (size > 1)
     {
-        tmp = *s;
+        tmp = *b;
         fn = tmp->n;
         sn = tmp->p->n;
         tmp->n = sn;
@@ -70,14 +70,14 @@ void    ss(t_stack_a **a, t_stack_a **b)
     sb(b, 0);
 }
 
-void    ra(t_stack_a **s, int p)
+void    ra(t_stack_a **a, int p)
 {
     int size;
     t_stack_a *tmp;
     int fn;
 
     size = 0;
-    tmp = *s;
+    tmp = *a;
     while (tmp)
     {
         size++;
@@ -85,23 +85,23 @@ void    ra(t_stack_a **s, int p)
     }
     if (size > 1)
     {
-        tmp = *s;
+        tmp = *a;
         fn = tmp->n;
-        *s = tmp->p;
-        addBack(s, fn);
+        *a = tmp->p;
+        addBack(a, fn);
     }
     if (p)
         ft_putstr("ra\n");
 }
 
-void    rb(t_stack_a **s, int p)
+void    rb(t_stack_a **b, int p)
 {
     int size;
     t_stack_a *tmp;
     int fn;
 
     size = 0;
-    tmp = *s;
+    tmp = *b;
     while (tmp)
     {
         size++;
@@ -109,10 +109,10 @@ void    rb(t_stack_a **s, int p)
     }
     if (size > 1)
     {
-        tmp = *s;
+        tmp = *b;
         fn = tmp->n;
-        *s = tmp->p;
-        addBack(s, fn);
+        *b = tmp->p;
+        addBack(b, fn);
     }
     if (p)
         ft_putstr("rb\n");
