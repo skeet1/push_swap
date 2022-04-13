@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 10:33:14 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/06 12:38:38 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/13 16:31:44 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void    ss(t_stack_a **a, t_stack_a **b)
 {
     sa(a, 0);
     sb(b, 0);
+    ft_putstr("ss\n");
 }
 
 void    ra(t_stack_a **a, int p)

@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/10 12:10:23 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/13 18:38:39 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,7 @@ void    sort_three(t_stack_a **a)
         sa(a, 1);
 }
 
-void    sort_four(t_stack_a **a, t_stack_a **b)
-{
-    int min;
-    int ind_min;
-    t_stack_a *tmp;
-    int i;
-
-    ind_min = 0;
-    tmp = *a;
-    min = 2147483647;
-    i = 0;
-    while (tmp)
-    {
-        tmp->ind = ++i;
-        if (tmp->n < min)
-        {
-            ind_min = tmp->ind;
-            min = tmp->n;
-        }
-        tmp = tmp->p;
-    }
-    while (--ind_min)
-        ra(a, 1);
-    pb(a, b);
-    sort_three(a);
-    pa(a, b);
-}
-
-void sort_five(t_stack_a **a, t_stack_a **b)
+int ind_of_max(t_stack_a **a)
 {
     int m;
     int ind_m;
@@ -90,9 +62,16 @@ void sort_five(t_stack_a **a, t_stack_a **b)
         }
         tmp = tmp->p;
     }
-    while (--ind_m)
-        ra(a, 1);
-    pb(a, b);
+    return (ind_m);
+}
+
+int ind_of_min(t_stack_a **a)
+{
+    int m;
+    int ind_m;
+    t_stack_a *tmp;
+    int i;
+
     ind_m = 0;
     tmp = *a;
     m = 2147483647;
@@ -107,8 +86,46 @@ void sort_five(t_stack_a **a, t_stack_a **b)
         }
         tmp = tmp->p;
     }
-    while (--ind_m)
-        ra(a, 1);
+    return (ind_m);
+}
+
+void    sort_four(t_stack_a **a, t_stack_a **b)
+{
+    int ind_max;
+
+    ind_max = ind_of_max(a);
+    if (ind_max > 2)
+        while (ind_max++ <= 4)
+            rra(a, 1);
+    else
+        while (--ind_max)
+            ra(a, 1);
+    pb(a, b);
+    sort_three(a);
+    pa(a, b);
+    ra(a, 1);
+}
+
+void sort_five(t_stack_a **a, t_stack_a **b)
+{
+    int ind_max;
+    int ind_min;
+
+    ind_max = ind_of_max(a);
+    if (ind_max > 3)
+        while (ind_max++ <= 5)
+            rra(a, 1);
+    else
+        while (--ind_max)
+            ra(a, 1);
+    pb(a, b);
+    ind_min = ind_of_min(a);
+    if (ind_min > 2)
+        while (ind_min++ <= 4)
+            rra(a, 1);
+    else
+        while (--ind_min)
+            ra(a, 1);
     pb(a, b);
     sort_three(a);
     pa(a, b);
@@ -116,30 +133,91 @@ void sort_five(t_stack_a **a, t_stack_a **b)
     ra(a, 1);
 }
 
-t_stack_a *find_lis(t_stack_a **a)
+void    ft_ind_stack(t_stack_a **a)
 {
-    
+    int     i;
+    t_stack_a *tmp;
+
+    i = 0;
+    tmp = *a;
+    while (tmp)
+    {
+        tmp->l = 1;
+        tmp->ind = i++;
+        tmp = tmp->p;
+    }
 }
 
-void    ft_sort_b(t_stack_a **a, t_stack_a **b)
+int    ft_find_lis(t_stack_a **a)
 {
-    t_stack_a *lis;
+    t_stack_a *tmp;
+    t_stack_a *tmp1;
+    int lis;
     
-    lis = find_lis(a);
+    ft_ind_stack(a);
+    lis = 1;
+    tmp = *a;
+    while (tmp)
+    {
+        tmp1 = *a;
+        while (tmp1->ind < tmp->ind)
+        {
+            if (tmp->n > tmp1->n)
+            {
+                tmp->l = tmp1->l + 1;
+                if (lis < tmp->l)
+                    lis = tmp->l;
+                tmp->prev_ind = tmp1->ind;
+            }
+            tmp1 = tmp1->p;
+        }
+        tmp = tmp->p;
+    }
+    return (lis);
+}
+
+void    mark_lis(t_stack_a **a, int lis)
+{
+    t_stack_a *tmp;
+
+    tmp = *a;
+    while (tmp)
+    {
+        if (tmp->l == lis)
+            tmp->lis = 1;
+        else
+            tmp->lis = 0;
+        tmp = tmp->p;
+    }
+    while ()
+}
+
+void    ft_sort(t_stack_a **a)
+{
+    int lis;
+    
+    lis = ft_find_lis(a);
+    mark_lis(a, lis);
+}
+
+int    ft_lstsize(t_stack_a *a)
+{
+    int		i;
+
+	i = 0;
+	while (a != NULL)
+	{
+		a = a->p;
+		i++;
+	}
+	return (i);
 }
 
 void    sort(t_stack_a **a, t_stack_a **b)
 {
-    t_stack_a *tmp;
     int size;
 
-    size = 0;
-    tmp = *a;
-    while (tmp)
-    {
-        size++;
-        tmp = tmp->p;
-    }
+    size = ft_lstsize(*a);
     if (size == 2)
         ra(a, 1);
     else if (size == 3)
@@ -149,5 +227,5 @@ void    sort(t_stack_a **a, t_stack_a **b)
     else if (size == 5)
         sort_five(a, b);
     else
-        ft_sort_b(a, b);
+        ft_sort(a);
 }
