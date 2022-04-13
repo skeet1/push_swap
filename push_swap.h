@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/13 18:35:33 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/13 21:36:43 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_stack_a
 {
     int n;
     struct s_stack_a *p;
+    struct s_stack_a *prev;
     int ind;
     int l;
     int prev_ind;

@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/13 18:37:36 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/13 21:39:30 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void addBack(t_stack_a **s, int n)
             tmp = tmp->p;
         }
         tmp->p = new;
+        new->prev = tmp;
     }
     else
     {
@@ -59,6 +60,7 @@ void    addFront(t_stack_a **s, int n)
 
     new = newNode(n);
     new->p = *s;
+    new->prev = NULL;
     *s = new;
 }
 

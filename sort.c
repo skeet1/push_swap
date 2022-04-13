@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/13 18:38:39 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/13 21:54:48 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ int    ft_find_lis(t_stack_a **a)
     while (tmp)
     {
         tmp1 = *a;
+        tmp->prev_ind = -1;
         while (tmp1->ind < tmp->ind)
         {
             if (tmp->n > tmp1->n)
@@ -179,17 +180,30 @@ int    ft_find_lis(t_stack_a **a)
 void    mark_lis(t_stack_a **a, int lis)
 {
     t_stack_a *tmp;
+    int prev;
 
     tmp = *a;
     while (tmp)
     {
         if (tmp->l == lis)
+        {
             tmp->lis = 1;
+            prev = tmp->prev_ind;
+            while (tmp)
+            {
+                if (tmp->ind == prev)
+                {
+                    tmp->lis = 1;
+                    prev = tmp->prev_ind;
+                }
+                tmp = tmp->prev;
+            }
+            return ;
+        }
         else
             tmp->lis = 0;
         tmp = tmp->p;
     }
-    while ()
 }
 
 void    ft_sort(t_stack_a **a)
