@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/13 21:36:43 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/14 15:56:34 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_stack_a
     int l;
     int prev_ind;
     int lis;
-    
+    int need; // how many move need an element in stack b to be in right poistion in stack a
 } t_stack_a;
 
 typedef struct s_variables
@@ -61,7 +61,7 @@ void    rr(t_stack_a **a, t_stack_a **b);
 void    rra(t_stack_a **a, int p);
 void    rrb(t_stack_a **b, int p);
 void    rrr(t_stack_a **a, t_stack_a **b);
-void    sort(t_stack_a **a, t_stack_a **b);
+void    ft_sort(t_stack_a **a, t_stack_a **b);
 void    sort_three(t_stack_a **a);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);

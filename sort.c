@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/14 14:18:10 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/14 16:12:42 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,19 @@ void sort_five(t_stack_a **a, t_stack_a **b)
     ra(a, 1);
 }
 
+int    ft_lstsize(t_stack_a *a)
+{
+    int		i;
+
+	i = 0;
+	while (a != NULL)
+	{
+		a = a->p;
+		i++;
+	}
+	return (i);
+}
+
 void    ft_ind_stack(t_stack_a **a)
 {
     int     i;
@@ -183,7 +196,7 @@ int    ft_find_lis(t_stack_a **a)
     return (lis);
 }
 
-void    mark_lis(t_stack_a **a, int lis)
+void    ft_mark_lis(t_stack_a **a, int lis)
 {
     t_stack_a *tmp;
     int prev;
@@ -212,7 +225,7 @@ void    mark_lis(t_stack_a **a, int lis)
     }
 }
 
-void    leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
+void    ft_leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
 {
     t_stack_a *tmp;
     int i;
@@ -231,30 +244,41 @@ void    leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
     ft_ind_stack(b);
 }
 
-void    ft_sort(t_stack_a **a, t_stack_a **b, int size)
+void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b, int size)
+{
+    t_stack_a *t1;
+    t_stack_a *t2;
+    int need;
+
+    need = 1;
+    t1 = *b;
+    while (t1)
+    {
+        t2 = *a;
+        while (t2)
+        {
+            if (t1->n > t2->n)
+                need++;
+            if (need > size / 2)
+                need = size - need + 1;
+            t1->need = need + t1->ind;
+            t2 = t2->p;
+        }
+        t1 = t1->p;
+    }
+}
+
+void    ft_sort1(t_stack_a **a, t_stack_a **b, int size)
 {
     int lis;
     
     lis = ft_find_lis(a);
-    printf("%d\n\n", lis);
-    mark_lis(a, lis);
-    leave_lis_in_a(a, b, size);
+    ft_mark_lis(a, lis);
+    ft_leave_lis_in_a(a, b, size);
+    ft_num_of_move_need(a, b, ft_lstsize(*a));
 }
 
-int    ft_lstsize(t_stack_a *a)
-{
-    int		i;
-
-	i = 0;
-	while (a != NULL)
-	{
-		a = a->p;
-		i++;
-	}
-	return (i);
-}
-
-void    sort(t_stack_a **a, t_stack_a **b)
+void    ft_sort(t_stack_a **a, t_stack_a **b)
 {
     int size;
 
@@ -268,5 +292,5 @@ void    sort(t_stack_a **a, t_stack_a **b)
     else if (size == 5)
         sort_five(a, b);
     else
-        ft_sort(a, b, size);
+        ft_sort1(a, b, size);
 }

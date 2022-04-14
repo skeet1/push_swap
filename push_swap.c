@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/14 11:30:14 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/14 15:56:26 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void print(t_stack_a *arg)
 {
     while (arg != NULL)
     {
-        printf("%d : %d and l : %d and prev is %d\n", arg->ind, arg->n, arg->lis, arg->prev_ind);
+        printf("%d : %d and l : %d and prev is %d\n", arg->ind, arg->n, arg->lis, arg->need);
         arg = arg->p;
     }
 }
@@ -100,7 +100,7 @@ int main(int argc, char **argv)
     // print(b);
     // rra(&a, 0);
     // print(a);
-    sort(&a, &b);
+    ft_sort(&a, &b);
     printf("Stack a\n");
     print(a);
     printf("Stack b\n");
