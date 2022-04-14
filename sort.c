@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/13 21:54:48 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/14 11:00:49 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,10 +153,12 @@ int    ft_find_lis(t_stack_a **a)
     t_stack_a *tmp;
     t_stack_a *tmp1;
     int lis;
+    int tl;
     
     ft_ind_stack(a);
     lis = 1;
     tmp = *a;
+    tl = 1;
     while (tmp)
     {
         tmp1 = *a;
@@ -165,10 +167,14 @@ int    ft_find_lis(t_stack_a **a)
         {
             if (tmp->n > tmp1->n)
             {
-                tmp->l = tmp1->l + 1;
+                tl = tmp1->l + 1;
+                if (tl > tmp->l)
+                {
+                    tmp->l = tl;
+                    tmp->prev_ind = tmp1->ind;
+                }
                 if (lis < tmp->l)
                     lis = tmp->l;
-                tmp->prev_ind = tmp1->ind;
             }
             tmp1 = tmp1->p;
         }
@@ -206,12 +212,16 @@ void    mark_lis(t_stack_a **a, int lis)
     }
 }
 
+// void    push_lis_to_b(t_stack_a **a, t_stack_a **b)
+
 void    ft_sort(t_stack_a **a)
 {
     int lis;
     
     lis = ft_find_lis(a);
+    printf("%d\n\n", lis);
     mark_lis(a, lis);
+    // push_lis_to_b(a, b);
 }
 
 int    ft_lstsize(t_stack_a *a)
