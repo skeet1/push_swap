@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/14 11:00:49 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/14 14:18:10 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,16 +212,33 @@ void    mark_lis(t_stack_a **a, int lis)
     }
 }
 
-// void    push_lis_to_b(t_stack_a **a, t_stack_a **b)
+void    leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
+{
+    t_stack_a *tmp;
+    int i;
 
-void    ft_sort(t_stack_a **a)
+    tmp = *a;
+    i = 0;
+    while (i++ < size)
+    {
+        if (tmp->lis)
+            ra(a, 1);
+        else
+            pb(a, b);
+        tmp = tmp->p;
+    }
+    ft_ind_stack(a);
+    ft_ind_stack(b);
+}
+
+void    ft_sort(t_stack_a **a, t_stack_a **b, int size)
 {
     int lis;
     
     lis = ft_find_lis(a);
     printf("%d\n\n", lis);
     mark_lis(a, lis);
-    // push_lis_to_b(a, b);
+    leave_lis_in_a(a, b, size);
 }
 
 int    ft_lstsize(t_stack_a *a)
@@ -251,5 +268,5 @@ void    sort(t_stack_a **a, t_stack_a **b)
     else if (size == 5)
         sort_five(a, b);
     else
-        ft_sort(a);
+        ft_sort(a, b, size);
 }
