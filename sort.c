@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/14 16:12:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/15 17:26:00 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,8 @@ void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b, int size)
     int need;
 
     need = 1;
+    ft_ind_stack(b);
+    ft_ind_stack(a);
     t1 = *b;
     while (t1)
     {
@@ -268,14 +270,44 @@ void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b, int size)
     }
 }
 
-void    ft_sort1(t_stack_a **a, t_stack_a **b, int size)
+int     ft_min_move(t_stack_a **b)
+{
+    t_stack_a *tmp;
+    int min_move;
+    int ind;
+
+    tmp = *b;
+    min_move = 1000000;
+    while (tmp)
+    {
+        if (tmp->need < min_move)
+        {
+            min_move = tmp->need;
+            ind = tmp->ind;
+        }
+        tmp = tmp->p;
+    }
+    return (ind);
+}
+
+void    move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int nm)
+{
+    while ()
+}
+
+void    ft_sort1(t_stack_a **a, t_stack_a **b)
 {
     int lis;
     
     lis = ft_find_lis(a);
     ft_mark_lis(a, lis);
-    ft_leave_lis_in_a(a, b, size);
+    ft_leave_lis_in_a(a, b, ft_lstsize(*a));
     ft_num_of_move_need(a, b, ft_lstsize(*a));
+    printf("%d\n\n\n", ft_min_move(b));
+    while (ft_lstsize(*b))
+    {
+        ft_move_stack_b_to_a(a, b, ft_min_move(b));
+    }
 }
 
 void    ft_sort(t_stack_a **a, t_stack_a **b)
@@ -292,5 +324,5 @@ void    ft_sort(t_stack_a **a, t_stack_a **b)
     else if (size == 5)
         sort_five(a, b);
     else
-        ft_sort1(a, b, size);
+        ft_sort1(a, b);
 }
