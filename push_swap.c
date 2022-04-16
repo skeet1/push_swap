@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/15 21:46:31 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/16 16:21:34 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int main(int argc, char **argv)
     // rra(&a, 0);
     // print(a);
     ft_sort(&a, &b);
-    // printf("Stack a\n");
-    // print(a);
-    // printf("Stack b\n");
-    // print(b);
+    printf("Stack a\n");
+    print(a);
+    printf("Stack b\n");
+    print(b);
 }
