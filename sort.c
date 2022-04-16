@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/15 17:26:00 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/15 21:46:58 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,33 +244,33 @@ void    ft_leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
     ft_ind_stack(b);
 }
 
-void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b, int size)
+void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b)
 {
     t_stack_a *t1;
     t_stack_a *t2;
     int need;
 
-    need = 1;
     ft_ind_stack(b);
     ft_ind_stack(a);
     t1 = *b;
     while (t1)
     {
         t2 = *a;
+        need = 1;
         while (t2)
         {
             if (t1->n > t2->n)
                 need++;
-            if (need > size / 2)
-                need = size - need + 1;
-            t1->need = need + t1->ind;
+            else
+                break;
             t2 = t2->p;
         }
+        t1->need = need + t1->ind;
         t1 = t1->p;
     }
 }
 
-int     ft_min_move(t_stack_a **b)
+int     ft_ind_min_move(t_stack_a **b)
 {
     t_stack_a *tmp;
     int min_move;
@@ -290,9 +290,38 @@ int     ft_min_move(t_stack_a **b)
     return (ind);
 }
 
-void    move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int nm)
+int     ft_min_move(t_stack_a **b)
 {
-    while ()
+    t_stack_a *tmp;
+    int min_move;
+
+    tmp = *b;
+    min_move = 1000000;
+    while (tmp)
+    {
+        if (tmp->need < min_move)
+            min_move = tmp->need;
+        tmp = tmp->p;
+    }
+    return (min_move);
+}
+
+void    ft_move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int ind, int num_move)
+{
+    int i;
+    
+    i = 1;
+    while (ind--)
+    {
+        rb(b, 1);
+        num_move--;
+    }
+    while (i++ < num_move)
+        ra(a, 1);
+    pa(a, b);
+    i = 1;
+    while (i++ < num_move)
+        rra(a, 1);
 }
 
 void    ft_sort1(t_stack_a **a, t_stack_a **b)
@@ -302,11 +331,13 @@ void    ft_sort1(t_stack_a **a, t_stack_a **b)
     lis = ft_find_lis(a);
     ft_mark_lis(a, lis);
     ft_leave_lis_in_a(a, b, ft_lstsize(*a));
-    ft_num_of_move_need(a, b, ft_lstsize(*a));
-    printf("%d\n\n\n", ft_min_move(b));
+    ft_num_of_move_need(a, b);
     while (ft_lstsize(*b))
     {
-        ft_move_stack_b_to_a(a, b, ft_min_move(b));
+        ft_move_stack_b_to_a(a, b, ft_ind_min_move(b), ft_min_move(b));
+        ft_ind_stack(a);
+        ft_ind_stack(b);
+        ft_num_of_move_need(a, b);
     }
 }
 
