@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/16 16:21:34 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/17 14:01:25 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ int main(int argc, char **argv)
         while (args[i])
         {
             if (ft_check_arg(args[i]) == 0)
-                return (ft_putstr("Error\n"), 0);
+                return (ft_putstr("Error er\n"), 0);
             addBack(&a, ft_atoi(args[i++]));
         }
     }
     if (ft_check_dup(a) == 0)
-        return (ft_putstr("Error\n"), 0);
+        return (ft_putstr("Error dup\n"), 0);
     if (ft_check_sort(a))
         return (ft_putstr("is sorted \n"), 0);
     // ft_putstr("args good\n");

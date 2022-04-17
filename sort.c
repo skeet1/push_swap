@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/16 20:54:39 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/17 16:45:38 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,15 @@ void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b)
     {
         t2 = *a;
         need = 1;
+        // while (t2->p)
+        // {
+        //     if ((t2->n > t1->n && t2->p->n < t1->n) || (t2->n < t1->n && t2->p->n > t1->n))
+        //     {
+        //         need += t2->ind;
+        //         break;
+        //     }
+        //     t2 = t2->p;
+        // }
         while (t2)
         {
             if (t1->n > t2->n)
@@ -345,6 +354,9 @@ void    ft_move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int ind, int num_move
     while (i++ < num_move)
         ra(a, 1);
     pa(a, b);
+
+
+    
     // i = 1;
     // while (i++ < num_move)
     //     rra(a, 1);
@@ -357,6 +369,7 @@ void    ft_final_sort(t_stack_a **a)
 
     ind_min = ind_of_min(a);
     ft_ind_stack(a);
+    // printf("ind min %d\n", ind_min);
     if (ind_min >= ft_lstsize(*a) / 2)
     {
         l = ft_lstsize(*a) - ind_min + 1;
@@ -366,7 +379,7 @@ void    ft_final_sort(t_stack_a **a)
     else
     {
         l = ind_min;
-        while (l--)
+        while (--l)
             ra(a, 1);
     }
 }
@@ -379,15 +392,15 @@ void    ft_sort1(t_stack_a **a, t_stack_a **b)
     ft_mark_lis(a, lis);
     ft_leave_lis_in_a(a, b, ft_lstsize(*a));
     ft_num_of_move_need(a, b);
-    printf("infos : %d and %d\n", ft_ind_min_move(b), ft_min_move(b));
+    // printf("%d %d\n",ft_ind_min_move(b), ft_min_move(b));
     while (ft_lstsize(*b))
     {
-        ft_move_stack_b_to_a(a, b, ft_ind_min_move(b), ft_min_move(b));
+        ft_move_stack_b_to_a(a, b, ft_ind_min_move(b), 0);
         ft_ind_stack(a);
         ft_ind_stack(b);
         ft_num_of_move_need(a, b);
     }
-    ft_final_sort(a);
+    // ft_final_sort(a);
     ft_ind_stack(a);
 }
 
