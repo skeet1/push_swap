@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 10:33:14 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/13 16:31:44 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/20 13:32:08 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void    ra(t_stack_a **a, int p)
         fn = tmp->n;
         *a = tmp->p;
         addBack(a, fn);
+        free(tmp);
     }
     if (p)
         ft_putstr("ra\n");
@@ -114,6 +115,7 @@ void    rb(t_stack_a **b, int p)
         fn = tmp->n;
         *b = tmp->p;
         addBack(b, fn);
+        free(tmp);
     }
     if (p)
         ft_putstr("rb\n");
