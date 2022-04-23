@@ -6,24 +6,11 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:18:44 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:30:28 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:01:46 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_lstsize(t_stack_a *a)
-{
-	int		i;
-
-	i = 0;
-	while (a != NULL)
-	{
-		a = a->p;
-		i++;
-	}
-	return (i);
-}
 
 void	ft_ind_stack(t_stack_a **a)
 {
@@ -40,17 +27,21 @@ void	ft_ind_stack(t_stack_a **a)
 	}
 }
 
+void	ft_new_lis(int tl, int t1l, int t_prev_ind, int t1_ind)
+{
+	tl = t1l;
+	t_prev_ind = t1_ind;
+}
+
 int	ft_find_lis(t_stack_a **a)
 {
 	t_stack_a	*tmp;
 	t_stack_a	*tmp1;
 	int			lis;
-	int			tl;
 
 	ft_ind_stack(a);
 	lis = 1;
 	tmp = *a;
-	tl = 1;
 	while (tmp)
 	{
 		tmp1 = *a;
@@ -59,12 +50,8 @@ int	ft_find_lis(t_stack_a **a)
 		{
 			if (tmp->n > tmp1->n)
 			{
-				tl = tmp1->l + 1;
-				if (tl > tmp->l)
-				{
-					tmp->l = tl;
-					tmp->prev_ind = tmp1->ind;
-				}
+				if (tmp1->l + 1 > tmp->l)
+					ft_new_lis(tmp->l, tmp1->l + 1, tmp->prev_ind, tmp1->ind);
 				if (lis < tmp->l)
 					lis = tmp->l;
 			}

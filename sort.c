@@ -6,11 +6,24 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:12:05 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:58:21 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_lstsize(t_stack_a *a)
+{
+	int		i;
+
+	i = 0;
+	while (a != NULL)
+	{
+		a = a->p;
+		i++;
+	}
+	return (i);
+}
 
 void	ft_sort1(t_stack_a **a, t_stack_a **b)
 {
