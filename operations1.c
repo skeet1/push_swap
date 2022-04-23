@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 10:33:14 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:53:36 by mkarim           ###   ########.fr       */
+/*   Created: 2022/04/23 13:51:18 by mkarim            #+#    #+#             */
+/*   Updated: 2022/04/23 15:53:58 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_sa(t_stack_a **a, int p)
+void	ft_ra(t_stack_a **a, int p)
 {
 	int size;
 	t_stack_a *tmp;
 	int fn;
-	int sn;
 
 	size = 0;
 	tmp = *a;
@@ -30,43 +29,42 @@ void    ft_sa(t_stack_a **a, int p)
 	{
 		tmp = *a;
 		fn = tmp->n;
-		sn = tmp->p->n;
-		tmp->n = sn;
-		tmp->p->n = fn;
+		*a = tmp->p;
+		ft_add_back(a, fn);
+		free(tmp);
 	}
 	if (p)
-		ft_putstr("sa\n");
+		ft_putstr("ra\n");
 }
 
-void	ft_sb(t_stack_a **b, int p)
+void    ft_rb(t_stack_a **b, int p)
 {
-	int size;
-	t_stack_a *tmp;
-	int fn;
-	int sn;
+    int size;
+    t_stack_a *tmp;
+    int fn;
 
-	size = 0;
-	tmp = *b;
-	while (tmp)
-	{
-		size++;
-		tmp = tmp->p;
-	}
-	if (size > 1)
-	{
-		tmp = *b;
-		fn = tmp->n;
-		sn = tmp->p->n;
-		tmp->n = sn;
-		tmp->p->n = fn;
-	}
-	if (p)
-		ft_putstr("sb\n");
+    size = 0;
+    tmp = *b;
+    while (tmp)
+    {
+        size++;
+        tmp = tmp->p;
+    }
+    if (size > 1)
+    {
+        tmp = *b;
+        fn = tmp->n;
+        *b = tmp->p;
+        ft_add_back(b, fn);
+        free(tmp);
+    }
+    if (p)
+        ft_putstr("rb\n");
 }
 
-void	ft_ss(t_stack_a **a, t_stack_a **b)
+void ft_rr(t_stack_a **a, t_stack_a **b)
 {
-	ft_sa(a, 0);
-	ft_sb(b, 0);
-	ft_putstr("ss\n");
+    ft_ra(a, 0);
+    ft_rb(b, 0);
+    ft_putstr("rr\n");
 }

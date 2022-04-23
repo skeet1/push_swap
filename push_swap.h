@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/20 16:35:08 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 15:52:40 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 
 typedef struct s_stack_a
 {
-    int n;
-    struct s_stack_a *p;
-    struct s_stack_a *prev;
-    int ind;
-    int l;
-    int prev_ind;
-    int lis;
-    int ind_pair;
-    int trpl_r;
-    int need; // how many move need an element in stack b to be in right poistion in stack a
+	int n;
+	struct s_stack_a *p;
+	struct s_stack_a *prev;
+	int ind;
+	int l;
+	int prev_ind;
+	int lis;
+	int ind_pair;
+	int trpl_r;
+	int need; // how many move need an element in stack b to be in right poistion in stack a
 } t_stack_a;
 
-typedef struct s_variables
+typedef struct	s_variables
 {
-    int l;
-    int i;
-    int j;
-    int cl;
-}           t_variables;
+	int l;
+	int i;
+	int j;
+	int cl;
+}				t_variables;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,32 +41,57 @@ typedef struct s_variables
 
 #define BUFFER_SIZE 1
 
-int ft_check_arg(char *s);
-void ft_putstr(char *s);
-int ft_atoi(char *s);
-void print(t_stack_a *arg);
-int ft_check_dup(t_stack_a *arg);
-int ft_check_sort(t_stack_a *arg);
-char **ft_split(char const *s, char c);
-char	*ft_strjoin(char *s1, char *s2);
-void    addBack(t_stack_a **s, int n);
-void    addFront(t_stack_a **s, int n);
-t_stack_a *newNode(int n);
-void    sa(t_stack_a **s, int p);
-void    sb(t_stack_a **b, int p);
-void    ss(t_stack_a **a, t_stack_a **b);
-void    pa(t_stack_a **a, t_stack_a **b);
-void    pb(t_stack_a **a, t_stack_a **b);
-void    ra(t_stack_a **a, int p);
-void    rb(t_stack_a **b, int p);
-void    rr(t_stack_a **a, t_stack_a **b);
-void    rra(t_stack_a **a, int p);
-void    rrb(t_stack_a **b, int p);
-void    rrr(t_stack_a **a, t_stack_a **b);
-void    ft_sort(t_stack_a **a, t_stack_a **b);
-void    sort_three(t_stack_a **a);
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-int     ft_strlen(char *s);
+int			ft_check_arg(char *s);
+void		ft_putstr(char *s);
+int			ft_atoi(char *s);
+void		ft_print(t_stack_a *arg);
+int			ft_check_dup(t_stack_a *arg);
+int			ft_check_sort(t_stack_a *arg);
+char		**ft_split(char const *s, char c);
+char		*ft_strjoin(char *s1, char *s2);
+void		ft_add_back(t_stack_a **s, int n);
+void		ft_add_front(t_stack_a **s, int n);
+t_stack_a 	*ft_new_node(int n);
+void		ft_sa(t_stack_a **s, int p);
+void		ft_sb(t_stack_a **b, int p);
+void		ft_ss(t_stack_a **a, t_stack_a **b);
+void		ft_pa(t_stack_a **a, t_stack_a **b);
+void		ft_pb(t_stack_a **a, t_stack_a **b);
+void		ft_ra(t_stack_a **a, int p);
+void		ft_rb(t_stack_a **b, int p);
+void		ft_rr(t_stack_a **a, t_stack_a **b);
+void		ft_rra(t_stack_a **a, int p);
+void		ft_rrb(t_stack_a **b, int p);
+void		ft_rrr(t_stack_a **a, t_stack_a **b);
+void		ft_sort(t_stack_a **a, t_stack_a **b);
+void		ft_sort_three(t_stack_a **a);
+int			ft_ind_of_max(t_stack_a **a);
+int			ft_ind_of_min(t_stack_a **a);
+void		ft_sort_four(t_stack_a **a, t_stack_a **b);
+void		ft_sort_five(t_stack_a **a, t_stack_a **b);
+void		ft_sort1(t_stack_a **a, t_stack_a **b);
+int			ft_lstsize(t_stack_a *a);
+void		ft_ind_stack(t_stack_a **a);
+int			ft_find_lis(t_stack_a **a);
+void		ft_mark_lis(t_stack_a **a, int lis);
+void		ft_leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size);
+int			ft_ind_pair(t_stack_a **a, int n);
+int			ft_max(int a, int b);
+void		ft_num_of_move_need(t_stack_a **a, t_stack_a **b);
+int			ft_ind_pair_min_move(t_stack_a **b, t_stack_a **a);
+int			ft_ind_min_move(t_stack_a **b);
+int			ft_min_move(t_stack_a **b);
+void		ft_move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int if_rra, int num_move);
+void		ft_final_sort(t_stack_a **a);
+int			ft_get_by_index(t_stack_a **s, int ind_min_move);
+void		ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move);
+void		ft_move_with_rr(t_stack_a **a, t_stack_a **b, int ind_min_move);
+int			if_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_pair);
+int			if_rr(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_pair);
+int			if_rra(t_stack_a **a, int ind);
+void		ft_move_to_a(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_p_min_move);
+char		*ft_get_next_line(int fd);
+char		*ft_strjoin(char *s1, char *s2);
+int			ft_strlen(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:37:42 by mkarim            #+#    #+#             */
-/*   Updated: 2022/03/27 13:36:28 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 15:14:54 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int ft_check_arg(char *s)
 {
     int     i;
-    
+
     i = 0;
     if (s[i] == '+' || s[i] == '-')
         i++;
@@ -31,7 +31,7 @@ int ft_check_arg(char *s)
 int ft_check_dup(t_stack_a *arg)
 {
     t_stack_a   *c;
-    
+
     while (arg->p != NULL)
     {
         c = arg->p;
