@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:20:33 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:19:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:37:15 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_final_sort(t_stack_a **a)
 	}
 }
 
-int	ft_get_by_index(t_stack_a **s, int ind_min_move)
+int	ft_gbi(t_stack_a **s, int ind_min_move)
 {
 	t_stack_a	*tmp;
 
@@ -64,6 +64,12 @@ int	ft_get_by_index(t_stack_a **s, int ind_min_move)
 	return (0);
 }
 
+void	ft_let(int *a, int fa, int *b, int fb)
+{
+	*(a) = fa;
+	*(b) = fb;
+}
+
 void	ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move)
 {
 	int			el_b;
@@ -71,8 +77,7 @@ void	ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move)
 	t_stack_a	*t_a;
 	t_stack_a	*t_b;
 
-	el_b = ft_get_by_index(b, ind_min_move);
-	el_a = ft_get_by_index(a, ft_ind_pair_min_move(b, a));
+	ft_let(&el_a, ft_gbi(a, ft_ind_pmm(b, a)), &el_b, ft_gbi(b, ind_min_move));
 	t_a = *a;
 	t_b = *b;
 	while (t_a->n != el_a && t_b->n != el_b)
@@ -85,12 +90,10 @@ void	ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move)
 	{
 		ft_rra(a, 1);
 		t_a = *a;
-		t_b = *b;
 	}
 	while (t_b->n != el_b)
 	{
 		ft_rrb(b, 1);
-		t_a = *a;
 		t_b = *b;
 	}
 	ft_pa(a, b);

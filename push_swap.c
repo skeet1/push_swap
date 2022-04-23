@@ -6,11 +6,20 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:26:36 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 22:02:22 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void ft_print(t_stack_a *arg)
+{
+	while (arg != NULL)
+	{
+		printf("%d : %d and l : %d and prev is %d\n", arg->ind, arg->n, arg->lis, arg->need);
+		arg = arg->p;
+	}
+}
 
 t_stack_a	*ft_new_node(int n)
 {
@@ -80,5 +89,9 @@ int	main(int argc, char **argv)
 			return (ft_putstr("Error\n"), 0);
 		b = NULL;
 		ft_sort(&a, &b);
+		while (1)
+			;
+		// printf("stack is \n");
+		// ft_print(a);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:58:21 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:37:50 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	ft_sort1(t_stack_a **a, t_stack_a **b)
 	ft_num_of_move_need(a, b);
 	while (ft_lstsize(*b))
 	{
-		if (if_rrr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a)))
+		if (if_rrr(a, b, ft_ind_min_move(b), ft_ind_pmm(b, a)))
 			ft_move_with_rrr(a, b, ft_ind_min_move(b));
-		else if (if_rr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a)))
+		else if (if_rr(a, b, ft_ind_min_move(b), ft_ind_pmm(b, a)))
 			ft_move_with_rr(a, b, ft_ind_min_move(b));
 		else
-			ft_move_to_a(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a));
+			ft_move_to_a(a, b, ft_ind_min_move(b), ft_ind_pmm(b, a));
 		tmp = *b;
 		ft_ind_stack(a);
 		ft_ind_stack(b);

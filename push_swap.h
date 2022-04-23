@@ -6,40 +6,38 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:19:56 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 21:49:00 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_stack_a
 {
-	int n;
-	struct s_stack_a *p;
-	struct s_stack_a *prev;
-	int ind;
-	int l;
-	int prev_ind;
-	int lis;
-	int ind_pair;
-	int trpl_r;
-	int need;
-} t_stack_a;
+	int					n;
+	struct s_stack_a	*p;
+	struct s_stack_a	*prev;
+	int					ind;
+	int					l;
+	int					prev_ind;
+	int					lis;
+	int					ind_pair;
+	int					trpl_r;
+	int					need;
+}				t_stack_a;
 
-typedef struct	s_variables
+typedef struct s_variables
 {
-	int l;
-	int i;
-	int j;
-	int cl;
+	int		l;
+	int		i;
+	int		j;
+	int		cl;
 }				t_variables;
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define BUFFER_SIZE 1
 
 int			ft_check_arg(char *s);
 void		ft_putstr(char *s);
@@ -50,7 +48,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 void		ft_add_back(t_stack_a **s, int n);
 void		ft_add_front(t_stack_a **s, int n);
-t_stack_a 	*ft_new_node(int n);
+t_stack_a	*ft_new_node(int n);
 void		ft_sa(t_stack_a **s, int p);
 void		ft_sb(t_stack_a **b, int p);
 void		ft_ss(t_stack_a **a, t_stack_a **b);
@@ -77,19 +75,24 @@ void		ft_leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size);
 int			ft_ind_pair(t_stack_a **a, int n);
 int			ft_max(int a, int b);
 void		ft_num_of_move_need(t_stack_a **a, t_stack_a **b);
-int			ft_ind_pair_min_move(t_stack_a **b, t_stack_a **a);
+int			ft_ind_pmm(t_stack_a **b, t_stack_a **a);
 int			ft_ind_min_move(t_stack_a **b);
 int			ft_min_move(t_stack_a **b);
 void		ft_final_sort(t_stack_a **a);
-int			ft_get_by_index(t_stack_a **s, int ind_min_move);
+int			ft_gbi(t_stack_a **s, int ind_min_move);
 void		ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move);
 void		ft_move_with_rr(t_stack_a **a, t_stack_a **b, int ind_min_move);
-int			if_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_pair);
+int			if_rrr(t_stack_a **a, t_stack_a **b,
+				int ind_min_move, int ind_pair);
 int			if_rr(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_pair);
 int			if_rra(t_stack_a **a, int ind);
-void		ft_move_to_a(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_p_min_move);
+void		ft_move_to_a(t_stack_a **a, t_stack_a **b,
+				int ind_min_move, int ind_p_min_move);
 char		*ft_get_next_line(int fd);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_strlen(char *s);
+void		ft_let(int *a, int fa, int *b, int fb);
+int			ft_min_in_stack(t_stack_a **a);
+int			ft_max_in_stack(t_stack_a **a);
 
 #endif

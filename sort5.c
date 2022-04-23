@@ -6,18 +6,11 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:21:17 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 17:21:56 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 17:42:34 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_assist_move_with_rr(t_stack_a **a, t_stack_a **b, t_stack_a *ta, t_stack_a *tb)
-{
-	ft_rr(a, b);
-	ta = *a;
-	tb = *b;
-}
 
 void	ft_move_with_rr(t_stack_a **a, t_stack_a **b, int ind_min_move)
 {
@@ -26,8 +19,7 @@ void	ft_move_with_rr(t_stack_a **a, t_stack_a **b, int ind_min_move)
 	t_stack_a	*t_a;
 	t_stack_a	*t_b;
 
-	el_b = ft_get_by_index(b, ind_min_move);
-	el_a = ft_get_by_index(a, ft_ind_pair_min_move(b, a));
+	ft_let(&el_a, ft_gbi(a, ft_ind_pmm(b, a)), &el_b, ft_gbi(b, ind_min_move));
 	t_a = *a;
 	t_b = *b;
 	while (t_a->n != el_a && t_b->n != el_b)
@@ -40,12 +32,10 @@ void	ft_move_with_rr(t_stack_a **a, t_stack_a **b, int ind_min_move)
 	{
 		ft_ra(a, 1);
 		t_a = *a;
-		t_b = *b;
 	}
 	while (t_b->n != el_b)
 	{
 		ft_rb(b, 1);
-		t_a = *a;
 		t_b = *b;
 	}
 	ft_pa(a, b);
@@ -94,8 +84,8 @@ void	ft_move_to_a(t_stack_a **a, t_stack_a **b, int ind_mm, int ind_p_mm)
 	int		el_b;
 	int		l;
 
-	el_a = ft_get_by_index(a, ind_p_mm);
-	el_b = ft_get_by_index(b, ind_mm);
+	el_a = ft_gbi(a, ind_p_mm);
+	el_b = ft_gbi(b, ind_mm);
 	l = 0;
 	if (ind_mm > ft_lstsize(*b) / 2)
 	{
