@@ -6,14 +6,13 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:18:44 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:48:32 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:30:28 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-int    ft_lstsize(t_stack_a *a)
+int	ft_lstsize(t_stack_a *a)
 {
 	int		i;
 
@@ -26,10 +25,10 @@ int    ft_lstsize(t_stack_a *a)
 	return (i);
 }
 
-void    ft_ind_stack(t_stack_a **a)
+void	ft_ind_stack(t_stack_a **a)
 {
-	int     i;
-	t_stack_a *tmp;
+	int			i;
+	t_stack_a	*tmp;
 
 	i = 0;
 	tmp = *a;
@@ -41,12 +40,12 @@ void    ft_ind_stack(t_stack_a **a)
 	}
 }
 
-int    ft_find_lis(t_stack_a **a)
+int	ft_find_lis(t_stack_a **a)
 {
-	t_stack_a *tmp;
-	t_stack_a *tmp1;
-	int lis;
-	int tl;
+	t_stack_a	*tmp;
+	t_stack_a	*tmp1;
+	int			lis;
+	int			tl;
 
 	ft_ind_stack(a);
 	lis = 1;
@@ -78,8 +77,8 @@ int    ft_find_lis(t_stack_a **a)
 
 void	ft_mark_lis(t_stack_a **a, int lis)
 {
-	t_stack_a *tmp;
-	int prev;
+	t_stack_a	*tmp;
+	int			prev;
 
 	tmp = *a;
 	while (tmp)
@@ -105,10 +104,10 @@ void	ft_mark_lis(t_stack_a **a, int lis)
 	}
 }
 
-void    ft_leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
+void	ft_leave_lis_in_a(t_stack_a **a, t_stack_a **b, int size)
 {
-	t_stack_a *tmp;
-	int i;
+	t_stack_a	*tmp;
+	int			i;
 
 	tmp = *a;
 	i = 0;

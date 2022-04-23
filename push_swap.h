@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:52:40 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:19:56 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_stack_a
 	int lis;
 	int ind_pair;
 	int trpl_r;
-	int need; // how many move need an element in stack b to be in right poistion in stack a
+	int need;
 } t_stack_a;
 
 typedef struct	s_variables
@@ -44,7 +44,6 @@ typedef struct	s_variables
 int			ft_check_arg(char *s);
 void		ft_putstr(char *s);
 int			ft_atoi(char *s);
-void		ft_print(t_stack_a *arg);
 int			ft_check_dup(t_stack_a *arg);
 int			ft_check_sort(t_stack_a *arg);
 char		**ft_split(char const *s, char c);
@@ -81,7 +80,6 @@ void		ft_num_of_move_need(t_stack_a **a, t_stack_a **b);
 int			ft_ind_pair_min_move(t_stack_a **b, t_stack_a **a);
 int			ft_ind_min_move(t_stack_a **b);
 int			ft_min_move(t_stack_a **b);
-void		ft_move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int if_rra, int num_move);
 void		ft_final_sort(t_stack_a **a);
 int			ft_get_by_index(t_stack_a **s, int ind_min_move);
 void		ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move);

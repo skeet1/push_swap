@@ -6,17 +6,17 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:19:20 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:49:08 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:21:48 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     ft_ind_pair(t_stack_a **a, int n)
+int	ft_ind_pair(t_stack_a **a, int n)
 {
-	t_stack_a *tmp;
-	int ind_min;
-	int min;
+	t_stack_a	*tmp;
+	int			ind_min;
+	int			min;
 
 	ft_ind_stack(a);
 	tmp = *a;
@@ -68,15 +68,14 @@ int	ft_max(int a, int b)
 
 void	ft_num_of_move_need(t_stack_a **a, t_stack_a **b)
 {
-	t_stack_a *t1;
-	t_stack_a *t2;
-	t_stack_a *test;
-	int ind_p;
+	t_stack_a	*t1;
+	t_stack_a	*t2;
+	t_stack_a	*test;
+	int			ind_p;
 
 	ft_ind_stack(b);
 	ft_ind_stack(a);
 	t1 = *b;
-	int i = 0;
 	while (t1)
 	{
 		t2 = *a;
@@ -93,15 +92,14 @@ void	ft_num_of_move_need(t_stack_a **a, t_stack_a **b)
 		test = *b;
 		t1->need = ind_p + 1;
 		t1 = t1->p;
-		i++;
 	}
 }
 
 int	ft_ind_pair_min_move(t_stack_a **b, t_stack_a **a)
 {
-	t_stack_a *tmp;
-	int min_move;
-	int ind;
+	t_stack_a	*tmp;
+	int			min_move;
+	int			ind;
 
 	tmp = *b;
 	min_move = 1000000;
@@ -121,9 +119,9 @@ int	ft_ind_pair_min_move(t_stack_a **b, t_stack_a **a)
 
 int	ft_ind_min_move(t_stack_a **b)
 {
-	t_stack_a *tmp;
-	int min_move;
-	int ind;
+	t_stack_a	*tmp;
+	int			min_move;
+	int			ind;
 
 	tmp = *b;
 	min_move = 1000000;

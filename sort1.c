@@ -6,18 +6,18 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:18:07 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:47:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:05:52 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_sort_three(t_stack_a **a)
+void	ft_sort_three(t_stack_a **a)
 {
-	t_stack_a *tmp;
-	int f;
-	int s;
-	int t;
+	t_stack_a	*tmp;
+	int			f;
+	int			s;
+	int			t;
 
 	tmp = *a;
 	f = tmp->n;
@@ -41,12 +41,12 @@ void    ft_sort_three(t_stack_a **a)
 		ft_sa(a, 1);
 }
 
-int ft_ind_of_max(t_stack_a **a)
+int	ft_ind_of_max(t_stack_a **a)
 {
-	int m;
-	int ind_m;
-	t_stack_a *tmp;
-	int i;
+	int			m;
+	int			ind_m;
+	t_stack_a	*tmp;
+	int			i;
 
 	ind_m = 0;
 	tmp = *a;
@@ -67,10 +67,10 @@ int ft_ind_of_max(t_stack_a **a)
 
 int	ft_ind_of_min(t_stack_a **a)
 {
-	int m;
-	int ind_m;
-	t_stack_a *tmp;
-	int i;
+	int			m;
+	int			ind_m;
+	t_stack_a	*tmp;
+	int			i;
 
 	ind_m = 0;
 	tmp = *a;
@@ -91,7 +91,7 @@ int	ft_ind_of_min(t_stack_a **a)
 
 void	ft_sort_four(t_stack_a **a, t_stack_a **b)
 {
-	int ind_max;
+	int	ind_max;
 
 	ind_max = ft_ind_of_max(a);
 	if (ind_max > 2)
@@ -106,10 +106,10 @@ void	ft_sort_four(t_stack_a **a, t_stack_a **b)
 	ft_ra(a, 1);
 }
 
-void ft_sort_five(t_stack_a **a, t_stack_a **b)
+void	ft_sort_five(t_stack_a **a, t_stack_a **b)
 {
-	int ind_max;
-	int ind_min;
+	int	ind_max;
+	int	ind_min;
 
 	ind_max = ft_ind_of_max(a);
 	if (ind_max > 3)

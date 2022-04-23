@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 13:57:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/05 12:21:45 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:01:00 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	s = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 2) * sizeof(char));
 	while (s1[++i])
 		s[i] = s1[i];
-    s[i] = ' ';
+	s[i] = ' ';
 	while (s2[++j])
 		s[i + j + 1] = s2[j];
 	s[i + j + 1] = '\0';

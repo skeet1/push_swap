@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:46:54 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:12:05 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_sort1(t_stack_a **a, t_stack_a **b)
 {
-	int lis;
-	t_stack_a *tmp;
+	int			lis;
+	t_stack_a	*tmp;
 
 	lis = ft_find_lis(a);
 	ft_mark_lis(a, lis);
@@ -23,24 +23,23 @@ void	ft_sort1(t_stack_a **a, t_stack_a **b)
 	ft_num_of_move_need(a, b);
 	while (ft_lstsize(*b))
 	{
-	if (if_rrr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a)))
-		ft_move_with_rrr(a, b, ft_ind_min_move(b));
-	else if (if_rr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a)))
-		ft_move_with_rr(a, b, ft_ind_min_move(b));
-	else
-		ft_move_to_a(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a));
-	tmp = *b;
-	ft_ind_stack(a);
-	ft_ind_stack(b);
+		if (if_rrr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a)))
+			ft_move_with_rrr(a, b, ft_ind_min_move(b));
+		else if (if_rr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a)))
+			ft_move_with_rr(a, b, ft_ind_min_move(b));
+		else
+			ft_move_to_a(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b, a));
+		tmp = *b;
+		ft_ind_stack(a);
+		ft_ind_stack(b);
 		ft_num_of_move_need(a, b);
 	}
-
 	ft_final_sort(a);
 }
 
 void	ft_sort(t_stack_a **a, t_stack_a **b)
 {
-	int size;
+	int		size;
 
 	size = ft_lstsize(*a);
 	if (size == 2)

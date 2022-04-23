@@ -6,13 +6,13 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:06:59 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 15:53:14 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 16:01:30 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_putstr(char *s)
+void	ft_putstr(char *s)
 {
 	int		i;
 
@@ -24,7 +24,7 @@ void    ft_putstr(char *s)
 	}
 }
 
-int ft_atoi(char *s)
+int	ft_atoi(char *s)
 {
 	int		i;
 	int		res;
