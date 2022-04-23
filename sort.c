@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:01:05 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/21 14:36:37 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/23 13:40:10 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,24 @@ int     ft_ind_pair(t_stack_a **a, int n)
         }
         tmp = tmp->p;
     }
-    return (ind_min);
+    if (min > n)
+        return (ind_min);
+    tmp = *a;
+    min = tmp->n; // min and ind_min stand now for max and ind_max 
+    tmp = tmp->p;
+    ind_min = 0;
+    while (tmp)
+    {
+        if (min < tmp->n)
+        {
+            min = tmp->n;
+            ind_min = tmp->ind;
+        }
+        tmp = tmp->p;
+    }
+    if (min < n)
+        return (ind_min + 1);
+    return (0);
 }
 
 int     ft_el_pair(t_stack_a **a, int n)
@@ -299,21 +316,53 @@ void    ft_num_of_move_need(t_stack_a **a, t_stack_a **b)
 {
     t_stack_a *t1;
     t_stack_a *t2;
+    t_stack_a *test;
     int ind_p;
 
     ft_ind_stack(b);
     ft_ind_stack(a);
     t1 = *b;
+    int i = 0;
     while (t1)
     {
         t2 = *a;
         ind_p = ft_ind_pair(a, t1->n);
         t1->ind_pair = ind_p;
+        // if (!i && t1->n == 27)
+        //     printf("pair index %d and his index is %d\n", ft_ind_pair(a, t1->n), t1->ind);
         if (ind_p > ft_lstsize(*a) / 2)
             ind_p = ft_lstsize(*a) - ind_p;
+        if (t1->ind_pair > ft_lstsize(*a) / 2 && t1->ind > ft_lstsize(*b) / 2)
+            ind_p = ft_max(ind_p, ft_lstsize(*b) - t1->ind);
+        else if (t1->ind_pair <= ft_lstsize(*a) / 2 && t1->ind <= ft_lstsize(*b) / 2)
+            ind_p = ft_max(ind_p, t1->ind);
+        else
+            ind_p += t1->ind;
+        test = *b;
         t1->need = ind_p + 1;
         t1 = t1->p;
+        i++;
     }
+}
+
+int     ft_ind_pair_min_move(t_stack_a **b)
+{
+    t_stack_a *tmp;
+    int min_move;
+    int ind;
+
+    tmp = *b;
+    min_move = 1000000;
+    while (tmp)
+    {
+        if (tmp->need < min_move)
+        {
+            min_move = tmp->need;
+            ind = tmp->ind_pair;
+        }
+        tmp = tmp->p;
+    }
+    return (ind);
 }
 
 int     ft_ind_min_move(t_stack_a **b)
@@ -353,9 +402,12 @@ int     ft_min_move(t_stack_a **b)
 }
 
 void    ft_move_stack_b_to_a(t_stack_a **a, t_stack_a **b, int if_rra, int num_move)
-{  
-    // int trpl_r;
+{
+    t_stack_a *tmp;
+    
     ft_ind_stack(a);
+
+    tmp = *b;
     if (if_rra)
     {
         while (--num_move)
@@ -392,6 +444,109 @@ void    ft_final_sort(t_stack_a **a)
     }
 }
 
+int ft_get_by_index(t_stack_a **s, int ind_min_move)
+{
+    t_stack_a *tmp;
+
+    tmp = *s;
+    ft_ind_stack(s);
+    while (tmp)
+    {
+        if (tmp->ind == ind_min_move)
+            return (tmp->n);
+        tmp = tmp->p;
+    }
+    return (0);
+}
+
+void    ft_move_with_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move)
+{
+    int el_b;
+    int el_a;
+    t_stack_a *t_a;
+    t_stack_a *t_b;
+
+    el_b = ft_get_by_index(b, ind_min_move);
+    el_a = ft_get_by_index(a, ft_ind_pair_min_move(b));
+    t_a = *a;
+    t_b = *b;
+    // if (!i)
+    // {
+    //     printf("ind mm %d and ind pair %d ------ and el a is : %d and el b is : %d\n ----------", ind_min_move, ft_ind_pair_min_move(b), el_a, el_b);
+    //     return ;
+    // }
+    while (t_a->n != el_a && t_b->n != el_b)
+    {
+        rrr(a, b);
+        t_a = *a;
+        t_b = *b;
+    }
+    while (t_a->n != el_a)
+    {
+        rra(a, 1);
+        t_a = *a;
+        t_b = *b;
+    }
+    while (t_b->n != el_b)
+    {
+        rrb(b, 1);
+        t_a = *a;
+        t_b = *b;
+    }
+    pa(a, b);
+}
+
+void    ft_move_with_rr(t_stack_a **a, t_stack_a **b, int ind_min_move)
+{
+    int el_b;
+    int el_a;
+    t_stack_a *t_a;
+    t_stack_a *t_b;
+
+    el_b = ft_get_by_index(b, ind_min_move);
+    el_a = ft_get_by_index(a, ft_ind_pair_min_move(b));
+    t_a = *a;
+    t_b = *b;
+    // printf("\n\n--------- el a is %d el b is %d ------------\n\n\n", el_a, el_b);
+    while (t_a->n != el_a && t_b->n != el_b)
+    {
+        rr(a, b);
+        t_a = *a;
+        t_b = *b;
+    }
+    while (t_a->n != el_a)
+    {
+        ra(a, 1);
+        t_a = *a;
+        t_b = *b;
+    }
+    while (t_b->n != el_b)
+    {
+        rb(b, 1);
+        t_a = *a;
+        t_b = *b;
+    }
+    pa(a, b);
+}
+
+int if_rrr(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_pair)
+{
+    ft_ind_stack(a);
+    ft_ind_stack(b);
+    if (ind_min_move > ft_lstsize(*b) / 2 && ind_pair > ft_lstsize(*a) / 2)
+        return (1);
+    return (0);
+}
+
+int if_rr(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_pair)
+{
+    ft_ind_stack(a);
+    ft_ind_stack(b);
+    if (ind_min_move <= ft_lstsize(*b) / 2 && ind_pair <= ft_lstsize(*a) / 2)
+        return (1);
+    return (0);
+}
+
 int if_rra(t_stack_a **a, int ind)
 {
 
@@ -399,6 +554,42 @@ int if_rra(t_stack_a **a, int ind)
     if (ind > ft_lstsize(*a) / 2)
         return (1);
     return (0);
+}
+
+void    ft_move_to_a(t_stack_a **a, t_stack_a **b, int ind_min_move, int ind_p_min_move)
+{
+    int el_a;
+    int el_b;
+    int l;
+
+    el_a = ft_get_by_index(a, ind_p_min_move);
+    el_b = ft_get_by_index(b, ind_min_move);
+    l = 0;
+    if (ind_min_move > ft_lstsize(*b) / 2)
+    {
+        l = ft_lstsize(*b) - ind_min_move;
+        while (l--)
+            rrb(b, 1);
+    }
+    else
+    {
+        l = ind_min_move;
+        while (l--)
+            rb(b, 1);
+    }
+    if (ind_p_min_move > ft_lstsize(*a) / 2)
+    {
+        l = ft_lstsize(*a) - ind_p_min_move;
+        while (l--)
+            rra(a, 1);
+    }
+    else
+    {
+        l = ind_p_min_move;
+        while (l--)
+            ra(a, 1);
+    }
+    pa(a, b);
 }
 
 void    ft_sort1(t_stack_a **a, t_stack_a **b)
@@ -410,28 +601,36 @@ void    ft_sort1(t_stack_a **a, t_stack_a **b)
     ft_mark_lis(a, lis);
     ft_leave_lis_in_a(a, b, ft_lstsize(*a));
     ft_num_of_move_need(a, b);
-    int i = 3;
-    while (ft_lstsize(*b) && i--)
+    // printf("---------------------------------------A-----------------\n");
+    // print(*a);
+    // printf("---------------------------------------B-----------------\n");
+    // print(*b);
+    // printf("min move is : %d --- ind min move is : %d --- index pair is : %d\n", ft_min_move(b), ft_ind_min_move(b), ft_ind_pair_min_move(b));
+    // if (if_rrr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b)))
+    //     ft_move_with_rrr(a, b, ft_ind_min_move(b));
+    while (ft_lstsize(*b))
     {
+        if (if_rrr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b)))
+            ft_move_with_rrr(a, b, ft_ind_min_move(b));
+        else if (if_rr(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b)))
+            ft_move_with_rr(a, b, ft_ind_min_move(b));
+        else
+            ft_move_to_a(a, b, ft_ind_min_move(b), ft_ind_pair_min_move(b));
         ft_ind_stack(a);
-        // if (i == 0)
-        // {
-        //     printf("Stack a\n");
-        //     print(*a);
-        //     printf("Stack b\n");
-        //     print(*b);
-        // }
+        // ft_move_stack_b_to_a(a, b, if_rra(a, ft_ind_pair(a, tmp->n)), tmp->need);
+        ft_ind_stack(b);
         tmp = *b;
-        printf("number is %d\n", tmp->n);
-        if (tmp->n == 22)
-        {
-            printf("index of pair is : %d, \n", ft_ind_pair(a, tmp->n));
-        }
-        ft_move_stack_b_to_a(a, b, if_rra(a, ft_ind_pair(a, tmp->n)), tmp->need);
+        // printf("---------------------------------------A-----------------\n");
+        // print(*a);
+        // printf("---------------------------------------B-----------------\n");
+        // print(*b);
         ft_ind_stack(a);
         ft_ind_stack(b);
         ft_num_of_move_need(a, b);
+        // if (!i)
+        //     printf("min move is : %d --- ind min move is : %d --- index pair is : %d\n", ft_min_move(b), ft_ind_min_move(b), ft_ind_pair_min_move(b));
     }
+    
     ft_final_sort(a);
     // ft_ind_stack(a);
 }
