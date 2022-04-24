@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 13:51:49 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:09:01 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 13:30:48 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_pa(t_stack_a **a, t_stack_a **b)
 		tb = *b;
 		ft_add_front(a, tb->n);
 		*b = tb->p;
+		free(tb);
 	}
 	ft_putstr("pa\n");
 }
@@ -50,36 +51,47 @@ void	ft_pb(t_stack_a **a, t_stack_a **b)
 		ta = *a;
 		ft_add_front(b, ta->n);
 		*a = ta->p;
+		free(ta);
 	}
 	ft_putstr("pb\n");
 }
 
 void	ft_rra(t_stack_a **a, int p)
 {
-	t_stack_a	*tmp;
+	t_stack_a	*tmp1;
+	t_stack_a	*tmp2;
+	t_stack_a	*head;
 
-	tmp = *a;
-	while (tmp->p->p)
-	{
-		tmp = tmp->p;
-	}
-	ft_add_front(a, tmp->p->n);
-	tmp->p = NULL;
+	if (ft_lstsize(*a) < 2)
+		return ;
+	head = *a;
+	tmp1 = *a;
+	while (tmp1->p->p != NULL)
+		tmp1 = tmp1->p;
+	tmp2 = tmp1->p;
+	tmp2->p = head;
+	tmp1->p = NULL;
+	*a = tmp2;
 	if (p)
 		ft_putstr("rra\n");
 }
 
 void	ft_rrb(t_stack_a **b, int p)
 {
-	t_stack_a	*tmp;
+	t_stack_a	*tmp1;
+	t_stack_a	*tmp2;
+	t_stack_a	*head;
 
-	tmp = *b;
-	while (tmp->p->p)
-	{
-		tmp = tmp->p;
-	}
-	ft_add_front(b, tmp->p->n);
-	tmp->p = NULL;
+	if (ft_lstsize(*b) < 2)
+		return ;
+	head = *b;
+	tmp1 = *b;
+	while (tmp1->p->p != NULL)
+		tmp1 = tmp1->p;
+	tmp2 = tmp1->p;
+	tmp2->p = head;
+	tmp1->p = NULL;
+	*b = tmp2;
 	if (p)
 		ft_putstr("rrb\n");
 }

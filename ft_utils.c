@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:06:59 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 16:01:30 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 11:56:02 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	ft_putstr(char *s)
 	}
 }
 
-int	ft_atoi(char *s)
+long long	ft_atoi(char *s)
 {
-	int		i;
-	int		res;
-	int		signe;
+	long long	i;
+	long long	res;
+	long long	signe;
 
 	i = 0;
 	res = 0;

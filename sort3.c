@@ -6,49 +6,11 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:19:20 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 21:53:08 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 13:18:36 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// int		ft_min_in_stack(t_stack_a **a)
-// {
-// 	t_stack_a	*tmp;
-// 	int			min;
-
-// 	tmp = *a;
-// 	min = tmp->n;
-// 	tmp = tmp->p;
-// 	while (tmp)
-// 	{
-// 		if (min > tmp->n)
-// 		{
-// 			min = tmp->n;
-// 		}
-// 		tmp = tmp->p;
-// 	}
-// 	return (min);
-// }
-
-// int		ft_max_in_stack(t_stack_a **a)
-// {
-// 	t_stack_a	*tmp;
-// 	int			max;
-
-// 	tmp = *a;
-// 	max = tmp->n;
-// 	tmp = tmp->p;
-// 	while (tmp)
-// 	{
-// 		if (max < tmp->n)
-// 		{
-// 			max = tmp->n;
-// 		}
-// 		tmp = tmp->p;
-// 	}
-// 	return (max);
-// }
 
 int	ft_ind_pair(t_stack_a **a, int n)
 {
@@ -66,44 +28,12 @@ int	ft_ind_pair(t_stack_a **a, int n)
 			return (tmp->p->ind);
 		tmp = tmp->p;
 	}
-	tmp = *a;
-	min = tmp->n;
-	tmp = tmp->p;
-	ind_min = 0;
-	while (tmp)
-	{
-		if (min > tmp->n)
-		{
-			min = tmp->n;
-			ind_min = tmp->ind;
-		}
-		tmp = tmp->p;
-	}
-
-
-	// ind_min = ft_ind_of_min(a);
-	// min = ft_min_in_stack(a);
-
-
+	ind_min = ft_miiin(a, 1);
+	min = ft_miiin(a, 0);
 	if (min > n)
 		return (ind_min);
-	tmp = *a;
-	max = tmp->n;
-	tmp = tmp->p;
-	ind_max = 0;
-	while (tmp)
-	{
-		if (max < tmp->n)
-		{
-			max = tmp->n;
-			ind_max = tmp->ind;
-		}
-		tmp = tmp->p;
-	}
-
-
-	// max = ft_max_in_stack(a);
-	// ind_max = ft_ind_of_max(a);
+	ind_max = ft_maaax(a, 1);
+	max = ft_maaax(a, 0);
 	if (max < n)
 		return (ind_max + 1);
 	return (0);

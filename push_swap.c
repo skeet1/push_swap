@@ -6,20 +6,21 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:33:24 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 22:02:22 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 13:32:03 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_print(t_stack_a *arg)
-{
-	while (arg != NULL)
-	{
-		printf("%d : %d and l : %d and prev is %d\n", arg->ind, arg->n, arg->lis, arg->need);
-		arg = arg->p;
-	}
-}
+//void ft_print(t_stack_a *arg)
+//{
+//	while (arg != NULL)
+//	{
+//		printf("%d : %d and l : %d and prev is %d\n",
+// arg->ind, arg->n, arg->l, arg->prev_ind);
+//		arg = arg->p;
+//	}
+//}
 
 t_stack_a	*ft_new_node(int n)
 {
@@ -69,29 +70,24 @@ int	main(int argc, char **argv)
 	t_stack_a	*a;
 	t_stack_a	*b;
 	static char	**args;
+	static char	*tab;
 
-	i = 2;
+	i = 1;
 	if (argc > 2)
 	{
 		while (i < argc)
-			argv[1] = ft_strjoin(argv[1], argv[i++]);
-		args = ft_split(argv[1], ' ');
+			tab = ft_strjoin(tab, argv[i++]);
+		args = ft_split(tab, ' ');
 		i = 0;
 		while (args[i])
 		{
-			if (ft_check_arg(args[i]) == 0)
+			if (!ft_check_arg(args[i]))
 				return (ft_putstr("Error\n"), 0);
 			ft_add_back(&a, ft_atoi(args[i++]));
 		}
 		if (ft_check_dup(a) == 0)
 			return (ft_putstr("Error\n"), 0);
-		if (ft_check_sort(a))
-			return (ft_putstr("Error\n"), 0);
 		b = NULL;
 		ft_sort(&a, &b);
-		while (1)
-			;
-		// printf("stack is \n");
-		// ft_print(a);
 	}
 }

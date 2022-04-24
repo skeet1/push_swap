@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/23 21:49:00 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 13:19:15 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ typedef struct s_variables
 
 int			ft_check_arg(char *s);
 void		ft_putstr(char *s);
-int			ft_atoi(char *s);
+long long	ft_atoi(char *s);
 int			ft_check_dup(t_stack_a *arg);
-int			ft_check_sort(t_stack_a *arg);
+int			ft_check_int(long long n);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 void		ft_add_back(t_stack_a **s, int n);
@@ -94,5 +94,7 @@ int			ft_strlen(char *s);
 void		ft_let(int *a, int fa, int *b, int fb);
 int			ft_min_in_stack(t_stack_a **a);
 int			ft_max_in_stack(t_stack_a **a);
+int			ft_miiin(t_stack_a **a, int ind);
+int			ft_maaax(t_stack_a **a, int ind);
 
 #endif
