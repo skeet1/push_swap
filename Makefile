@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 21:28:57 by mkarim            #+#    #+#              #
-#    Updated: 2022/04/23 21:49:42 by mkarim           ###   ########.fr        #
+#    Updated: 2022/04/24 15:57:37 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 
 HEADER = push_swap.h
 
@@ -24,19 +24,19 @@ FLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	ar rc $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(HEADER)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "Compilation of push_swap: \033[1;32mOK\033[m"
 
-%.o : %.c $(HEADER)
-	$(CC) $(FLAGS) -I. -c $<
+%.o : %.c
+	$(CC) $(FLAGS) -c $<
 
 clean :
 	rm $(OBJ)
 	@echo "\033[1;33m>> all objects files are deleted.\033[0m"
 
-fclean :
-	rm -rf $(NAME) $(OBJ)
+fclean : clean
+	rm -rf $(NAME)
 	@echo "\033[0;31m>> $(NAME) is deleted.\033[0m"
 
 re : fclean all
