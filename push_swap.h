@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:41:00 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/24 13:19:15 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 22:33:34 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		ft_putstr(char *s);
 long long	ft_atoi(char *s);
 int			ft_check_dup(t_stack_a *arg);
 int			ft_check_int(long long n);
+int			ft_check_sort(t_stack_a *arg);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 void		ft_add_back(t_stack_a **s, int n);

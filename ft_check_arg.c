@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:37:42 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/24 11:57:09 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/24 22:32:59 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,34 @@ int	ft_check_dup(t_stack_a *arg)
 		while (c)
 		{
 			if (c->n == arg->n)
+			{
+				ft_putstr("Error\n");
 				return (0);
+			}
 			c = c->p;
 		}
 		arg = arg->p;
 	}
 	return (1);
+}
+
+int	ft_check_sort(t_stack_a *arg)
+{
+	t_stack_a	*c;
+	int			s;
+	int			i;
+
+	i = 0;
+	s = 0;
+	while (arg->p != NULL)
+	{
+		c = arg->p;
+		if (arg->n < c->n)
+			s++;
+		arg = arg->p;
+		i++;
+	}
+	if (s == i)
+		return (1);
+	return (0);
 }
