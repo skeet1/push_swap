@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:18:44 by mkarim            #+#    #+#             */
-/*   Updated: 2022/04/24 12:17:37 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/04/25 02:00:49 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	ft_ind_stack(t_stack_a **a)
 	}
 }
 
-void	ft_new_lis(int tl, int t1l, int t_prev_ind, int t1_ind)
+void	ft_new_lis(int *tl, int *t1l, int *t_prev_ind, int *t1_ind)
 {
-	tl = t1l;
-	t_prev_ind = t1_ind;
+	*(tl) = *t1l + 1;
+	*(t_prev_ind) = *t1_ind;
 }
 
 int	ft_find_lis(t_stack_a **a)
@@ -51,7 +51,7 @@ int	ft_find_lis(t_stack_a **a)
 			if (tmp->n > tmp1->n)
 			{
 				if (tmp1->l + 1 > tmp->l)
-					ft_new_lis(tmp->l, tmp1->l + 1, tmp->prev_ind, tmp1->ind);
+					ft_new_lis(&tmp->l, &tmp1->l, &tmp->prev_ind, &tmp1->ind);
 				if (lis < tmp->l)
 					lis = tmp->l;
 			}
@@ -74,7 +74,7 @@ void	ft_mark_lis(t_stack_a **a, int lis)
 		{
 			tmp->lis = 1;
 			prev = tmp->prev_ind;
-			while (tmp)
+			while (tmp && tmp->ind > 0)
 			{
 				if (tmp->ind == prev)
 				{
